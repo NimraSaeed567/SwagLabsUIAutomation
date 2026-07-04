@@ -1,0 +1,20 @@
+{
+  "name": "swaglabsautomation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "cross-env SLOWMO=250 playwright test --headed --workers=1",
+    "test:e2e": "cross-env SLOWMO=250 playwright test tests/05-e2e-flow.spec.js --headed --workers=1 --project=chromium",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "cross-env": "^10.1.0"
+  }
+}
