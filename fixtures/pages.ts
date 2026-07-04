@@ -15,7 +15,9 @@ type PageFixtures = {
   loggedInPage: Page;
 };
 
-const isHeadedRun = Number(process.env.SLOWMO) > 0;
+// Matches playwright.config.ts: every local run is headed by default, only
+// CI stays headless.
+const isHeadedRun = !process.env.CI;
 
 export const test = base.extend<PageFixtures>({
   // Maximizes the real OS window via CDP before any test step runs. More

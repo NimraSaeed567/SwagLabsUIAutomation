@@ -12,13 +12,23 @@ TypeScript Playwright test suite for [saucedemo.com](https://www.saucedemo.com),
 
 ## Commands
 
+Every local run is headed (visible, maximized, moderate pace) by default — no flags or env vars needed.
+Firefox always runs headless regardless, due to a headed-mode display/GPU driver issue on some machines
+(see `playwright.config.ts` for details); Chromium and WebKit run headed.
+
 ```
-npm test              # run all tests headless
-npm run test:headed   # run with a visible, maximized browser at a moderate pace
-npm run test:e2e      # run just the full end-to-end flow, headed
-npm run test:ui       # open Playwright's UI mode
-npm run report        # open the last HTML report
-npm run typecheck     # type-check the project with tsc, no build output
+npm test               # run all tests, headed by default
+npm run test:e2e       # run just the full end-to-end flow
+npm run test:headless  # force a headless run (what CI uses)
+npm run test:ui        # open Playwright's UI mode
+npm run report         # open the last HTML report
+npm run typecheck      # type-check the project with tsc, no build output
+```
+
+To run a single file or test by name:
+```
+npx playwright test tests/02-inventory.spec.ts --project=chromium
+npx playwright test -g "displays six products" --project=chromium
 ```
 
 ## Test summary and bug reports

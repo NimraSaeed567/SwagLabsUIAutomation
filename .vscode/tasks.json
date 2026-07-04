@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Playwright: Run e2e (headed by default, auto-closes)",
+      "type": "npm",
+      "script": "test:e2e",
+      "problemMatcher": [],
+      "group": { "kind": "test", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Playwright: Run all tests (headed by default, auto-closes)",
+      "type": "npm",
+      "script": "test",
+      "problemMatcher": [],
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Playwright: Run current file (headed by default, auto-closes)",
+      "type": "shell",
+      "command": "npx",
+      "args": ["playwright", "test", "${relativeFile}", "--project=chromium"],
+      "problemMatcher": [],
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    }
+  ]
+}
