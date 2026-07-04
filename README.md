@@ -24,7 +24,8 @@ npm run typecheck     # type-check the project with tsc, no build output
 ## Test summary and bug reports
 
 Every run writes `test-summary.md` (gitignored, regenerated each run) with the total/passed/failed/skipped
-counts and a per-test status table.
+counts and a per-test status table. See [`docs/sample-test-summary.md`](docs/sample-test-summary.md) for
+what one looks like.
 
 Any failing test additionally produces a short Markdown bug report under `bug-reports/` (gitignored,
 regenerated each run): which steps passed/failed, a clean expected-vs-actual summary, a one-line repro
