@@ -18,7 +18,10 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  // 1 local retry absorbs occasional transient flakes from long sequential
+  // headed sessions (observed: WebKit intermittently drops a page/context
+  // after ~5+ min of continuous headed use; isolated re-runs always pass).
+  retries: process.env.CI ? 2 : 1,
   workers: process.env.CI ? 2 : 1,
   reporter: [['html', { open: 'never' }], ['list'], ['./reporters/bug-report-reporter.ts']],
   use: {

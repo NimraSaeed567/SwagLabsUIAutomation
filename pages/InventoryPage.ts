@@ -7,6 +7,8 @@ export class InventoryPage {
   readonly cartLink: Locator;
   readonly cartBadge: Locator;
   readonly pageTitle: Locator;
+  readonly menuButton: Locator;
+  readonly logoutLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -15,6 +17,13 @@ export class InventoryPage {
     this.cartLink = page.locator('.shopping_cart_link');
     this.cartBadge = page.locator('.shopping_cart_badge');
     this.pageTitle = page.locator('.title');
+    this.menuButton = page.locator('#react-burger-menu-btn');
+    this.logoutLink = page.locator('#logout_sidebar_link');
+  }
+
+  async logout() {
+    await this.menuButton.click();
+    await this.logoutLink.click();
   }
 
   itemByName(name: string): Locator {
