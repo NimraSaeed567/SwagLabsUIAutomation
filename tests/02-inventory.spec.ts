@@ -1,4 +1,4 @@
-const { test, expect } = require('../fixtures/pages');
+import { test, expect } from '../fixtures/pages';
 
 test.describe('Inventory', () => {
   test('displays six products', async ({ loggedInPage, inventoryPage }) => {

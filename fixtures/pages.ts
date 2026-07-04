@@ -1,17 +1,23 @@
-const base = require('@playwright/test');
-const { LoginPage } = require('../pages/LoginPage');
-const { InventoryPage } = require('../pages/InventoryPage');
-const { CartPage } = require('../pages/CartPage');
-const {
-  CheckoutStepOnePage,
-  CheckoutStepTwoPage,
-  CheckoutCompletePage,
-} = require('../pages/CheckoutPage');
-const users = require('../test-data/users');
+import { test as base, expect, type Page } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
+import { InventoryPage } from '../pages/InventoryPage';
+import { CartPage } from '../pages/CartPage';
+import { CheckoutStepOnePage, CheckoutStepTwoPage, CheckoutCompletePage } from '../pages/CheckoutPage';
+import users from '../test-data/users';
+
+type PageFixtures = {
+  loginPage: LoginPage;
+  inventoryPage: InventoryPage;
+  cartPage: CartPage;
+  checkoutStepOnePage: CheckoutStepOnePage;
+  checkoutStepTwoPage: CheckoutStepTwoPage;
+  checkoutCompletePage: CheckoutCompletePage;
+  loggedInPage: Page;
+};
 
 const isHeadedRun = Number(process.env.SLOWMO) > 0;
 
-const test = base.test.extend({
+export const test = base.extend<PageFixtures>({
   // Maximizes the real OS window via CDP before any test step runs. More
   // reliable than the --start-maximized launch arg alone on Windows.
   page: async ({ page, browserName }, use) => {
@@ -53,6 +59,4 @@ const test = base.test.extend({
   },
 });
 
-const expect = base.expect;
-
-module.exports = { test, expect, users };
+export { expect, users };

@@ -5,3 +5,4 @@ blob-report/
 playwright/.cache/
 .claude/
 bug-reports/
+test-summary.md

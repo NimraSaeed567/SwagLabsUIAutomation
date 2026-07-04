@@ -1,4 +1,4 @@
-const { test, expect, users } = require('../fixtures/pages');
+import { test, expect, users } from '../fixtures/pages';
 
 test.describe('Login', () => {
   test('standard user can log in successfully', async ({ page, loginPage }) => {

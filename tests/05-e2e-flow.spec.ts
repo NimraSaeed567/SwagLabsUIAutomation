@@ -1,4 +1,4 @@
-const { test, expect, users } = require('../fixtures/pages');
+import { test, expect, users } from '../fixtures/pages';
 
 test.describe('End-to-end purchase journey', () => {
   test('login, shop, checkout, and return to home', async ({
