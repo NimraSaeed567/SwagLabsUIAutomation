@@ -1,9 +1,45 @@
 # Sample bug report (fabricated — not a real, open bug)
 
-This is a fictional example showing what `reporters/bug-report-reporter.js` generates
+This is a fictional example showing what `reporters/bug-report-reporter.ts` generates
 automatically under `bug-reports/` whenever a real test fails — no manual write-up needed.
 It's checked in here purely so the format is visible without running a failing test yourself.
 None of the values below correspond to an actual issue in this project or in saucedemo.com.
+
+## How this gets generated for real
+
+**Prerequisites**
+- Dependencies installed: `npm install`
+- Playwright browsers installed: `npx playwright test install` (one-time)
+- The custom reporter registered in `playwright.config.ts` (already done in this repo —
+  see the `reporter: [...]` array, which includes `./reporters/bug-report-reporter.ts`)
+
+**What triggers it**
+Any test run that has at least one failing test, via any of:
+```
+npm test
+npm run test:headed
+npm run test:e2e
+npx playwright test <any-args>
+```
+Playwright runs the suite as normal; when a test finishes, its `TestResult` (status, error,
+steps, attachments) is handed to every registered reporter. `BugReportReporter` collects the
+result for every test via `onTestEnd`, and once the whole run finishes, `onEnd` filters for
+tests with `status === 'failed' | 'timedOut'`.
+
+**What it does with each failure**
+1. Builds a URL-safe filename from the browser project name and test title.
+2. Pulls the `test.step()` breadcrumbs to show which steps passed before the failure.
+3. Strips ANSI color codes and Playwright's verbose polling "Call log" from the error, keeping
+   just the useful assertion summary (locator, expected, received, timeout).
+4. Filters out noisy attachments meant for AI-debugging tools (the accessibility-tree
+   "error-context" snapshot) and lists the useful ones — screenshot, video, trace.
+5. Writes one `.md` file per failure into `bug-reports/`, plus `bug-reports/index.md`
+   summarizing every failure in that run.
+
+**Where to find it after a real failing run**
+`bug-reports/` at the project root (gitignored — wiped and rebuilt every run, so it only ever
+reflects the *last* run, never stale data from an earlier one). Hand the relevant `.md` file
+straight to a developer, or open the linked trace with `npx playwright show-trace <path>`.
 
 ---
 
