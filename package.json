@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "playwright test",
-    "test:e2e": "playwright test tests/05-e2e-flow.spec.ts --project=chromium",
+    "test:e2e": "playwright test tests/06-e2e-flow.spec.ts --project=chromium",
     "test:headless": "cross-env CI=true playwright test",
     "typecheck": "tsc --noEmit",
     "test:ui": "playwright test --ui",

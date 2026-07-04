@@ -4,10 +4,10 @@ TypeScript Playwright test suite for [saucedemo.com](https://www.saucedemo.com),
 
 ## Structure
 
-- `pages/` — page objects (Login, Inventory, Cart, Checkout)
+- `pages/` — page objects (Login, Logout, Inventory, Cart, Checkout)
 - `fixtures/pages.ts` — custom Playwright fixtures that inject page objects and a pre-authenticated `loggedInPage`
 - `test-data/users.ts` — SauceDemo user credentials
-- `tests/` — spec files, run in order: `01-login`, `02-inventory`, `03-cart`, `04-checkout`, `05-e2e-flow` (full journey, runs last)
+- `tests/` — spec files, run in order: `01-login`, `02-logout`, `03-inventory`, `04-cart`, `05-checkout`, `06-e2e-flow` (full journey, runs last)
 - `reporters/bug-report-reporter.ts` — custom reporter: a pass/fail count summary every run, plus a Markdown bug report per failure
 
 ## Commands
@@ -27,7 +27,7 @@ npm run typecheck      # type-check the project with tsc, no build output
 
 To run a single file or test by name:
 ```
-npx playwright test tests/02-inventory.spec.ts --project=chromium
+npx playwright test tests/03-inventory.spec.ts --project=chromium
 npx playwright test -g "displays six products" --project=chromium
 ```
 

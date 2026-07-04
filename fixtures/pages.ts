@@ -3,6 +3,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { InventoryPage } from '../pages/InventoryPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutStepOnePage, CheckoutStepTwoPage, CheckoutCompletePage } from '../pages/CheckoutPage';
+import { LogoutPage } from '../pages/LogoutPage';
 import users from '../test-data/users';
 
 type PageFixtures = {
@@ -12,6 +13,7 @@ type PageFixtures = {
   checkoutStepOnePage: CheckoutStepOnePage;
   checkoutStepTwoPage: CheckoutStepTwoPage;
   checkoutCompletePage: CheckoutCompletePage;
+  logoutPage: LogoutPage;
   loggedInPage: Page;
 };
 
@@ -50,6 +52,9 @@ export const test = base.extend<PageFixtures>({
   },
   checkoutCompletePage: async ({ page }, use) => {
     await use(new CheckoutCompletePage(page));
+  },
+  logoutPage: async ({ page }, use) => {
+    await use(new LogoutPage(page));
   },
   // Starts each test already logged in as the standard user.
   loggedInPage: async ({ page }, use) => {
